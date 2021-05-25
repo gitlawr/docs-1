@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material mkdocs-render-swagger-plugin
-      - run: wget https://github.com/harvester/harvester/blob/master/api/openapi-spec/swagger.json -O docs/reference/swagger.json
+      - run: wget https://raw.githubusercontent.com/harvester/harvester/master/api/openapi-spec/swagger.json -O docs/reference/swagger.json
       - run: mkdocs build
 
   master-build:
@@ -35,7 +35,7 @@ jobs:
           git config --global user.name rancherio-gh-m
           git config --global user.email docs@harvesterhci.bot
           git pull
-      - run: wget https://github.com/harvester/harvester/blob/master/api/openapi-spec/swagger.json -O docs/reference/swagger.json
+      - run: wget https://raw.githubusercontent.com/harvester/harvester/master/api/openapi-spec/swagger.json -O docs/reference/swagger.json
       - run: pwd && ls -al docs/reference
       - run: |
           mike deploy ${{ env.LATEST_VERSION }}
@@ -57,5 +57,5 @@ jobs:
           git config --global user.name rancherio-gh-m
           git config --global user.email docs@harvesterhci.bot
           git pull
-      - run: wget https://github.com/harvester/harvester/blob/${{ steps.info.outputs.version }}/api/openapi-spec/swagger.json -O docs/reference/swagger.json
+      - run: wget https://raw.githubusercontent.com/harvester/harvester/master/api/openapi-spec/swagger.json -O docs/reference/swagger.json
       - run: mike deploy --rebase --push ${{ steps.info.outputs.version }}
