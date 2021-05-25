@@ -3,8 +3,8 @@ on:
   pull_request:
   push:
     branches:
-      - main
       - v*
+      - staging
 env:
   LATEST_VERSION: v0.2
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,7 +23,7 @@ jobs:
       - run: mkdocs build
 
   master-build:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/staging' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
