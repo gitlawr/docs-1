@@ -35,8 +35,8 @@ jobs:
           git config --global user.name rancherio-gh-m
           git config --global user.email docs@harvesterhci.bot
           git pull
-      - run: pwd && ls -al
       - run: wget https://github.com/harvester/harvester/blob/master/api/openapi-spec/swagger.json -O docs/reference/swagger.json
+      - run: pwd && ls -al docs/reference
       - run: |
           mike deploy ${{ env.LATEST_VERSION }}
           mike set-default ${{ env.LATEST_VERSION }}
